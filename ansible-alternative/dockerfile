@@ -1,0 +1,20 @@
+# FROM ubuntu:22.04
+# WORKDIR /ansible-proxmox-app
+# RUN apt update && apt install software-properties-common -y && add-apt-repository --yes --update ppa:ansible/ansible && apt install ansible python3-pip python3-venv -y
+# RUN python -m ensurepip --upgrade
+# COPY . .
+# RUN pip install proxmoxer && pip install requests
+
+# FROM almalinux:9.2
+# WORKDIR /ansible-proxmox-app
+# RUN dnf update -y && dnf install -y epel-release && dnf install ansible -y && dnf update -y && dnf install python3-pip -y
+# COPY . .
+# RUN python3 -m venv venv
+# RUN source venv/bin/activate
+# RUN pip install -r requirements.txt
+
+
+FROM Python
+python3 -m ensurepip --upgrade
+dnf update -y\
+dnf install openssh-clients -y

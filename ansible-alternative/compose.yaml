@@ -1,0 +1,13 @@
+services:
+  ansible-proxmox:
+    build: .
+    # ports:
+    #   - "8080:8080"
+    entrypoint: sleep 10000
+    volumes:
+      # - type: bind
+      #   source: ./
+      #   target: /proxmox-playbook
+      - type: bind
+        source: ~/.ssh/id_rsa
+        target: /root/.ssh/id_rsa
