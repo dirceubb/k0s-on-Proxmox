@@ -14,7 +14,8 @@
 # RUN pip install -r requirements.txt
 
 
-FROM Python
-python3 -m ensurepip --upgrade
-dnf update -y\
-dnf install openssh-clients -y
+FROM python:latest
+WORKDIR /ansible-k0s
+COPY . .
+RUN pip install -r requirements.txt
+# RUN apt update -y && apt install openssh-clients -y

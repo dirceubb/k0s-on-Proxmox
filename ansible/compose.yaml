@@ -1,13 +1,16 @@
 services:
-  ansible-proxmox:
+  ansible-k0s:
     build: .
     # ports:
     #   - "8080:8080"
     entrypoint: sleep 10000
+    command: chmod 500 ~/.ssh/id_rsa
+    stdin_open: true # docker run -i
+    tty: true 
     volumes:
       # - type: bind
       #   source: ./
       #   target: /proxmox-playbook
       - type: bind
-        source: ~/.ssh/id_rsa
+        source: ~/.ssh/rsa_proxmox_nodes
         target: /root/.ssh/id_rsa

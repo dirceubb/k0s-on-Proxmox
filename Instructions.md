@@ -8,4 +8,23 @@ qm set 9000 --ide2 local-lvm:cloudinit
 qm set 9000 --boot order=scsi0
 qm set 9000 --agent enabled=1
 ```
-2. Plan and apply terraform
+
+1. Export Proxmox's api TOKEN_ID and TOKEN_SECRET
+windows
+```
+$Env:PM_API_TOKEN_ID = 'poxmox-token@my-pve-node!main'
+$Env:PM_API_TOKEN_SECRET = 'my-secret'
+```
+linux/mac
+```
+export PM_API_TOKEN_ID = 'poxmox-token@my-pve-node!main'
+export PM_API_TOKEN_SECRET = 'my-secret'
+```
+
+1. Plan and Apply terraform
+```
+terraform plan -out=tfplan
+terraform apply tfplan
+```
+
+1. 

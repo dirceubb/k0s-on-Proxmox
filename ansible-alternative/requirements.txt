@@ -1,5 +1,0 @@
-ansible==8.3.0
-setuptools-rust==1.6.0
-wheel
-requests==2.31.0
-proxmoxer==2.0.1
