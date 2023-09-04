@@ -18,13 +18,9 @@
   boot          = "cdn" # https://pve.proxmox.com/wiki/Manual:_qm.conf#_options
   scsihw        = "virtio-scsi-pci"
   qemu_os       = "other"
-  # ssh_user      = "dirceu"
-  # ssh_private_key   = tls_private_key.nodes_private_keys.rsa_bits
-  # sshkeys       = tls_private_key.nodes_private_keys.public_key_openssh
   ## Cloud Init Settings Start ##
   ciuser        = "dirceu"
   sshkeys       = tls_private_key.nodes_private_keys.public_key_openssh
-  cipassword    = "uecrid"
   nameserver    = "4.2.2.2"
   ipconfig0     = "gw=10.0.0.1,ip=${each.value}/16"
   ## Cloud Init Settings End ##

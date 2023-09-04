@@ -4,8 +4,8 @@
   tasks:
     - name: Download Installer
       get_url:
-      url: https://get.k0s.sh
-      dest: "./k0s-installer.sh"
+        url: https://get.k0s.sh
+        dest: "./k0s-installer.sh"
     - name: Copy Installer to nodes
       copy:
         src: "./k0s-installer.sh"

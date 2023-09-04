@@ -3,14 +3,20 @@ services:
     build: .
     # ports:
     #   - "8080:8080"
-    entrypoint: sleep 10000
-    command: chmod 500 ~/.ssh/id_rsa
+    # entrypoint: sleep 10000
+    secrets:
+      - proxmox_id_rsa
+    # command: cp /run/secrets/proxmox_id_rsa /root/.ssh/id_rsa && chmod 500 /root/.ssh/id_rsa
+    # ssh-keygen -f /root/.ssh/id_rsa -q -N ""
     stdin_open: true # docker run -i
-    tty: true 
-    volumes:
-      # - type: bind
-      #   source: ./
-      #   target: /proxmox-playbook
-      - type: bind
-        source: ~/.ssh/rsa_proxmox_nodes
-        target: /root/.ssh/id_rsa
+    tty: true
+    # volumes:
+    #   # - type: bind
+    #   #   source: ./
+    #   #   target: /proxmox-playbook
+    #   - type: bind
+    #     source: ~/.ssh/rsa_proxmox_nodes
+    #     target: /root/.ssh/id_rsa
+secrets:
+  proxmox_id_rsa:
+    file: "~/.ssh/rsa_proxmox_nodes"
