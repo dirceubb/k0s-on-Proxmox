@@ -1,9 +1,9 @@
 FROM ubuntu:22.04
 WORKDIR /ansible-k0s
 # RUN apt update && apt install software-properties-common -y && add-apt-repository --yes --update ppa:ansible/ansible && apt install ansible python3-pip python3-venv -y
-COPY . .
 RUN apt update && apt install python3-pip openssh-client vim -y
 # RUN python -m ensurepip --upgrade
+COPY . .
 RUN pip3 install -r requirements.txt
 # RUN pip install proxmoxer && pip install requests
 

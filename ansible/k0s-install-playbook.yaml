@@ -2,16 +2,22 @@
   hosts: controller
   become: yes
   tasks:
-    - name: Download Installer
+    - name: Download Binary
       get_url:
-        url: https://get.k0s.sh
-        dest: "./k0s-installer.sh"
-    - name: Copy Installer to nodes
-      copy:
-        src: "./k0s-installer.sh"
-        dest: "/install-k0s/k0s-installer.sh"
-        owner: "dirceu"
-        group: "dirceu"
-        mode: 0755
-    - name: Install on single controller
-      command: k0s install controller --single && k0s start && k0s status
+        url: https://github.com/k0sproject/k0s/releases/download/v1.27.5+k0s.0/k0s-v1.27.5+k0s.0-amd64
+        dest: "/usr/local/bin/k0s"
+    - name: Grant execute permissions to k0s Binary
+      command: sudo chmod 755 /usr/local/bin/k0s
+    - name: Install k0s on single controller
+      command: sudo k0s install controller --single
+    - name: Start k0s service
+      command: sudo k0s start
+
+
+### Pendings work
+##  Automate workers join
+# sudo curl -sSLf https://github.com/k0sproject/k0s/releases/download/v1.27.5+k0s.0/k0s-v1.27.5+k0s.0-amd64 -o /usr/local/bin/k0s
+# ls -lh /usr/local/bin/k0s/bin/k0s
+# sudo chmod 755 /usr/local/bin/k0s
+## copy token from controller with command "sudo k0s token create --role=worker"
+# sudo k0s install worker --token-file k0s_join_token
